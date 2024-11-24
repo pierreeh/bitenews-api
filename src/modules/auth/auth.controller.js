@@ -29,4 +29,16 @@ async function signin(req, res, next) {
   }
 }
 
-module.exports = { register, signin };
+async function logout(req, res, next) {
+  try {
+    res.cookie("jwt", "", { httpOnly: true, expires: new Date(0) });
+
+    res
+      .status(200)
+      .send({ status: "success", message: "Logout successfully." });
+  } catch (e) {
+    next(e);
+  }
+}
+
+module.exports = { register, signin, logout };
