@@ -1,5 +1,6 @@
 const express = require("express");
 const { xss } = require("express-xss-sanitizer");
+const cookieParser = require("cookie-parser");
 
 const router = require("./routes");
 const { handleHttpError } = require("./middlewares/httpError.middleware");
@@ -12,6 +13,7 @@ function server() {
   app.use(express.json());
 
   app.use(xss());
+  app.use(cookieParser());
 
   app.use(requestLogger);
 
