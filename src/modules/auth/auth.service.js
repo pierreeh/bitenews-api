@@ -34,10 +34,10 @@ async function registerUser(email, password, username) {
 
 async function signinUser(email, password) {
   try {
-    if (!(await findUserByEmail(email))) {
-      throw new HandleHttpError(400, "Email and password doesn't match.");
-    }
-    if (!(await comparePassword(email, password))) {
+    if (
+      !(await findUserByEmail(email)) ||
+      !(await comparePassword(email, password))
+    ) {
       throw new HandleHttpError(400, "Email and password doesn't match.");
     }
 

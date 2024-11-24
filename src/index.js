@@ -1,10 +1,15 @@
 require("dotenv").config();
+const pino = require("pino");
 
 const server = require("./server");
 
+const logger = pino({ name: "server start" });
+
 function app() {
   const app = server();
-  app.listen({ port: process.env.PORT, host: process.env.HOST });
+  app.listen(process.env.PORT, () =>
+    logger.info(`Listening on port ${process.env.PORT}`)
+  );
 }
 
 app();

@@ -3,6 +3,7 @@ const { xss } = require("express-xss-sanitizer");
 
 const router = require("./routes");
 const { handleHttpError } = require("./middlewares/httpError.middleware");
+const requestLogger = require("./middlewares/requestLogger.middleware");
 
 function server() {
   const app = express();
@@ -11,6 +12,8 @@ function server() {
   app.use(express.json());
 
   app.use(xss());
+
+  app.use(requestLogger);
 
   app.use("/api", router);
 
