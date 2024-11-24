@@ -41,10 +41,8 @@ async function signinUser(email, password) {
       throw new HandleHttpError(400, "Email and password doesn't match.");
     }
 
-    const user = await db.user.findUnique({
-      where: { email },
-      select: { id: true, email: true, username: true },
-    });
+    // TODO - check if email is verified
+    const user = await db.user.findUnique({ where: { email } });
     return user;
   } catch (e) {
     throw e;

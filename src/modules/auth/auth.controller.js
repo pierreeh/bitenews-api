@@ -5,7 +5,7 @@ const { registerUser, signinUser } = require("./auth.service");
 const { HandleHttpError } = require("../../middlewares/httpError.middleware");
 
 function generateToken(payload, expiresIn) {
-  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: expiresIn });
+  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn });
 }
 
 async function register(req, res, next) {
@@ -36,9 +36,7 @@ async function signin(req, res, next) {
       maxAge: 30 * 24 * 60 * 60 * 1000,
     });
 
-    res
-      .status(200)
-      .send({ status: "success", data: { username: user.username, email } });
+    res.status(200).send({ status: "success", message: "OK" });
   } catch (e) {
     next(e);
   }
@@ -48,9 +46,7 @@ async function logout(req, res, next) {
   try {
     res.cookie("x-access-token", "", { httpOnly: true, expires: new Date(0) });
 
-    res
-      .status(200)
-      .send({ status: "success", message: "Logout successfully." });
+    res.status(200).send({ status: "success", message: "OK" });
   } catch (e) {
     next(e);
   }

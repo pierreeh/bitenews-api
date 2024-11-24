@@ -15,9 +15,10 @@ function server() {
   app.use(express.json());
 
   app.use(xss());
+  app.use(cookieParser());
+
   app.use(passport.initialize());
   passport.use("jwt", jwtStrategy);
-  app.use(cookieParser());
 
   app.use(requestLogger);
 

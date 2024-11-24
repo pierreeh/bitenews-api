@@ -15,10 +15,10 @@ datasource db {
 
 model User {
   id            String    @id @default(cuid())
-  email         String    @unique
+  email         String    @unique @db.VarChar(256)
   emailVerified DateTime? @map("email_verified")
-  password      String
-  username      String
+  password      String    @db.VarChar(256)
+  username      String    @db.VarChar(256)
   createdAt     DateTime  @default(now()) @map("created_at")
   updatedAt     DateTime  @updatedAt @map("updated_at")
 
