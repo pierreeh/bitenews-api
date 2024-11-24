@@ -1,6 +1,8 @@
 const express = require("express");
 const { xss } = require("express-xss-sanitizer");
 
+const router = require("./routes");
+
 function server() {
   const app = express();
 
@@ -9,9 +11,7 @@ function server() {
 
   app.use(xss());
 
-  app.get("/", (req, res) => {
-    res.send("hello world");
-  });
+  app.use("/api", router);
 
   return app;
 }
