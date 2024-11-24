@@ -7,7 +7,7 @@ const authSchema = Joi.object().keys({
     .trim(true)
     .max(256)
     .required(),
-  password: Joi.string().min(8).max(1000).required(),
+  password: Joi.string().min(6).max(1000).required(),
   username: Joi.string().max(100).trim(true).required(),
 });
 

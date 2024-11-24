@@ -27,7 +27,7 @@ function schemaValidator(schema) {
         ),
       };
 
-      return res.status(422).json(payload);
+      return res.status(400).json(payload);
     }
 
     req.body = value;
