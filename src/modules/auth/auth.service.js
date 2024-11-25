@@ -42,7 +42,10 @@ async function signinUser(email, password) {
     }
 
     // TODO - check if email is verified
-    const user = await db.user.findUnique({ where: { email } });
+    const user = await db.user.findUnique({
+      where: { email },
+      select: { id: true },
+    });
     return user;
   } catch (e) {
     throw e;
