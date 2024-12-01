@@ -1,4 +1,3 @@
-const supportedMethods = ["post", "patch"];
 const validationOptions = {
   abortEarly: false,
   allowUnknown: false,
@@ -11,12 +10,6 @@ function schemaValidator(schema) {
   }
 
   return (req, res, next) => {
-    const method = req.method.toLowerCase();
-
-    if (!supportedMethods.includes(method)) {
-      return next();
-    }
-
     const { error, value } = schema.validate(req.body, validationOptions);
 
     if (error) {

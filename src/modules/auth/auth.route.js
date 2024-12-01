@@ -10,5 +10,10 @@ const authenticate = express.Router();
 authenticate.post("/register", schemaValidator(authSchema), register);
 authenticate.post("/signin", signin);
 authenticate.post("/logout", auth(), logout);
+authenticate.all("*", (req, res) => {
+  res
+    .status(405)
+    .send({ status: "error", message: `Method ${req.method} not allowed.` });
+});
 
 module.exports = authenticate;
