@@ -12,7 +12,9 @@ async function register(req, res, next) {
     const { email, password, username } = req.body;
     await registerUser(email, password, username);
 
-    res.status(201).send({ status: "success", message: "OK" });
+    res
+      .status(201)
+      .send({ status: "success", message: "Registered successfully." });
   } catch (e) {
     next(e);
   }
@@ -31,7 +33,9 @@ async function signin(req, res, next) {
       maxAge: 30 * 24 * 60 * 60 * 1000,
     });
 
-    res.status(200).send({ status: "success", message: "OK" });
+    res
+      .status(200)
+      .send({ status: "success", message: "Signed in successfully." });
   } catch (e) {
     next(e);
   }
@@ -41,7 +45,9 @@ async function logout(req, res, next) {
   try {
     res.cookie("x-access-token", "", { httpOnly: true, expires: new Date(0) });
 
-    res.status(200).send({ status: "success", message: "OK" });
+    res
+      .status(200)
+      .send({ status: "success", message: "Logged out successfully." });
   } catch (e) {
     next(e);
   }
