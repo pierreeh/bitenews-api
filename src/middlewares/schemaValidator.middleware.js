@@ -5,10 +5,6 @@ const validationOptions = {
 };
 
 function schemaValidator(schema) {
-  if (!schema) {
-    throw new Error(`Schema not found for path: ${schema}`);
-  }
-
   return (req, res, next) => {
     const { error, value } = schema.validate(req.body, validationOptions);
 
