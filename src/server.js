@@ -11,9 +11,9 @@ const requestLogger = require("./middlewares/requestLogger.middleware");
 const jwtStrategy = require("./middlewares/passport.middleware");
 
 const corsOptions = {
-  origin: process.env.FRONTEND_HOST,
+  origin: process.env.CORS_ORIGIN,
   credentials: true,
-  optionsSuccessStatus: 200,
+  optionsSuccessStatus: 200
 };
 
 function server() {
@@ -34,6 +34,7 @@ function server() {
 
   app.use("/api", router);
 
+  // eslint-disable-next-line no-unused-vars
   app.use((err, req, res, next) => {
     handleHttpError(err, res);
   });
